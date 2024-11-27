@@ -16,18 +16,20 @@ export default function Hero() {
         </p>
       </div>
 
-      <Marquee autoFill className="h-56 md:h-96">
-        {images.map((img, i) => (
-          <Image
-            key={i}
-            src={img}
-            alt={img}
-            width={400}
-            height={400}
-            className="mx-2 md:mx-4 h-56 md:h-96 w-auto"
-          />
-        ))}
-      </Marquee>
+      <div className="h-56 md:h-96">
+        <Marquee autoFill>
+          {images.map((img, i) => (
+            <Image
+              key={i}
+              src={img}
+              alt={img}
+              width={400}
+              height={400}
+              className="mx-2 md:mx-4 h-56 md:h-96 w-auto"
+            />
+          ))}
+        </Marquee>
+      </div>
     </section>
   );
 }
