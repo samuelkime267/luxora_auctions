@@ -1,0 +1,58 @@
+{
+  "$schema": "node_modules/eslint-plugin-project-structure/independentModules.schema.json",
+  "modules": [
+    {
+      "name": "App folder",
+      "pattern": "/app/**",
+      "allowImportsFrom": ["app/globals.css", "{sharedImports}", "features/**"]
+    },
+
+    {
+      "name": "Features",
+      "pattern": "features/**",
+      "allowImportsFrom": ["{family_3}/**", "{sharedImports}"],
+      "errorMessage": "🔥 A feature may only import items from shared folders and its own family. Importing items from another feature is prohibited. 🔥"
+    },
+
+    {
+      "name": "Permissions file",
+      "pattern": "lib/permissions.ts",
+      "allowImportsFrom": ["features/**/db/**"],
+      "errorMessage": "🔥 The permission file may only import items from `features/**/db/**` 🔥"
+    },
+
+    {
+      "name": "Shared",
+      "pattern": [
+        "components/**",
+        "data/**",
+        "drizzle/**",
+        "hooks/**",
+        "lib/**",
+        "server/**"
+      ],
+      "allowImportsFrom": ["{sharedImports}"],
+      "errorMessage": "🔥 Shared folders are not allowed to import items from the `features` and `app` folders. 🔥"
+    },
+
+    // All files not specified in the rules are not allowed to import anything.
+    // Ignore files in `tasks/*` and `*`.
+    {
+      "name": "Unknown files",
+      "pattern": [["**", "!tasks/*", "!*"]],
+      "allowImportsFrom": [],
+      "allowExternalImports": false,
+      "errorMessage": "🔥 This file is not specified as an independent module in `independentModules.jsonc`. 🔥"
+    }
+  ],
+  "reusableImportPatterns": {
+    "sharedImports": [
+      "components/**",
+      "data/**",
+      "drizzle/**",
+      "hooks/**",
+      "lib/**",
+      "server/**"
+    ]
+  }
+}
