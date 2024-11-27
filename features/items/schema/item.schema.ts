@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-export const artworkSchema = z.object({
+export const itemSchema = z.object({
   id: z.string(),
   title: z.string(),
   artist: z.string(),

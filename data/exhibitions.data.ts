@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { exhibitionSchema } from "@/features/exhibition/schema/exhibition.schema";
+import { itemSchema } from "@/features/items/schema/item.schema";
 import angel from "@/assets/imgs/angel.jpg";
 import car from "@/assets/imgs/car.jpg";
 import field from "@/assets/imgs/field.jpg";
@@ -8,9 +10,8 @@ import statue2 from "@/assets/imgs/statue-2.jpg";
 import statue from "@/assets/imgs/statue.jpg";
 import watch2 from "@/assets/imgs/watch-2.jpg";
 import watch from "@/assets/imgs/watch.jpg";
-import { itemSchema } from "@/features/items/schema/item.schema";
 
-export const items: z.infer<typeof itemSchema>[] = [
+const items: z.infer<typeof itemSchema>[] = [
   {
     id: "1",
     title: "David",
@@ -101,5 +102,48 @@ export const items: z.infer<typeof itemSchema>[] = [
     updatedAt: new Date(1732709187946),
     stock: 10,
     category: "ring",
+  },
+];
+
+export const exhibitions: z.infer<typeof exhibitionSchema>[] = [
+  {
+    id: "1",
+    auctionName: "Sculptures from beyond",
+    startTime: new Date(1732713041897),
+    endTime: new Date(1732714041897),
+    createdBy: "Michelangelo di Lodovico",
+    createdById: "1",
+    createdAt: new Date(1732712041897),
+    items: items.slice(0, 3),
+  },
+  {
+    id: "2",
+    auctionName: "Legendary vehicle from the 1970s",
+    startTime: new Date(1732713041897),
+    endTime: new Date(1735512041897),
+    createdBy: "Michelangelo di Lodovico",
+    createdById: "1",
+    createdAt: new Date(1732712041897),
+    items: items.slice(3, 6),
+  },
+  {
+    id: "3",
+    auctionName: "Heavenly paintings",
+    startTime: new Date(1732713041897),
+    endTime: new Date(1732714041897),
+    createdBy: "Michelangelo di Lodovico",
+    createdById: "1",
+    createdAt: new Date(1732712041897),
+    items: items.slice(2, 5),
+  },
+  {
+    id: "4",
+    auctionName: "Moziac paintings",
+    startTime: new Date(1732713041897),
+    endTime: new Date(1732714041897),
+    createdBy: "Michelangelo di Lodovico",
+    createdById: "1",
+    createdAt: new Date(1732712041897),
+    items: items.slice(4, 7),
   },
 ];

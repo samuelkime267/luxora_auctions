@@ -1,14 +1,14 @@
 import { z } from "zod";
-import { artworkSchema } from "../schema/artwork.schema";
+import { itemSchema } from "../schema/item.schema";
 import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
-  data: z.infer<typeof artworkSchema>[];
+  data: z.infer<typeof itemSchema>[];
   isLoading: boolean;
 };
 
-export default function ProductGrid({ data, isLoading }: Props) {
+export default function ItemsGrid({ data, isLoading }: Props) {
   console.log(isLoading);
 
   return (
