@@ -6,11 +6,19 @@ import { Bell, Cart, Search, Menu, Account } from "./icons";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const path = usePathname();
   return (
-    <nav className="sticky top-0 left-0 w-full z-[1000] flex items-center justify-between py-4 md:py-6 px-4 md:px-8 mb-white shadow-sm bg-white">
+    <nav className="sticky top-0 left-0 w-full z-50 flex items-center justify-between py-4 md:py-6 px-4 md:px-8 mb-white shadow-sm bg-white">
       <Link
         href={"/"}
         className="font-corm font-bold leading-[1] text-lg md:text-2xl uppercase"
@@ -53,10 +61,19 @@ export default function Navbar() {
           <Cart className="w-8 h-8" />
           <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
         </Link>
-        <Button className="relative">
-          <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
-          <Bell className="w-8 h-8" />
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="relative">
+            <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
+            <Bell className="w-8 h-8" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="min-w-80" align="end">
+            <DropdownMenuLabel className="text-lg">
+              Notifications
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>No active notifications</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
 
         <Link href={"/account"}>
           <Account className="w-8 h-8" />
