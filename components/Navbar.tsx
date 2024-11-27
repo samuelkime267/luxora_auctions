@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/data/nav-links.data";
 import Link from "next/link";
-import { Bell, Cart, Search, Menu } from "./icons";
+import { Bell, Cart, Search, Menu, Account } from "./icons";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
@@ -10,8 +10,11 @@ import Button from "./Button";
 export default function Navbar() {
   const path = usePathname();
   return (
-    <nav className="sticky top-0 left-0 w-full z-[1000] flex items-center justify-between py-6 px-8 mb-white shadow-sm bg-white">
-      <Link href={"/"} className="font-corm font-bold text-2xl uppercase">
+    <nav className="sticky top-0 left-0 w-full z-[1000] flex items-center justify-between py-4 md:py-6 px-4 md:px-8 mb-white shadow-sm bg-white">
+      <Link
+        href={"/"}
+        className="font-corm font-bold text-lg md:text-2xl uppercase"
+      >
         Luxora Auctions
       </Link>
 
@@ -54,6 +57,10 @@ export default function Navbar() {
           <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
           <Bell className="w-8 h-8" />
         </Button>
+
+        <Link href={"/account"}>
+          <Account className="w-8 h-8" />
+        </Link>
 
         <Button className="block lg:hidden">
           <Menu className="w-8 h-8" />
