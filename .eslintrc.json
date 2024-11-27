@@ -10,12 +10,10 @@
         "type": "shared",
         "pattern": [
           "components/**/*",
-          "data/**/*",
           "hooks/**/*",
           "lib/**/*",
           "styles/**/*",
-          "server/**/*",
-          "assets/**/*"
+          "server/**/*"
         ]
       },
       {
@@ -23,6 +21,16 @@
         "type": "feature",
         "capture": ["featureName"],
         "pattern": ["features/*/**/*"]
+      },
+      {
+        "mode": "full",
+        "type": "data",
+        "pattern": ["data/**/*"]
+      },
+      {
+        "mode": "full",
+        "type": "assets",
+        "pattern": ["assets/**/*"]
       },
       {
         "mode": "full",
@@ -50,6 +58,10 @@
             "allow": ["shared"]
           },
           {
+            "from": ["shared"],
+            "allow": ["data", "assets"]
+          },
+          {
             "from": ["feature"],
             "allow": [
               "shared",
@@ -58,7 +70,11 @@
           },
           {
             "from": ["app", "neverImport"],
-            "allow": ["shared", "feature"]
+            "allow": ["shared", "feature", "data", "assets"]
+          },
+          {
+            "from": ["data"],
+            "allow": ["feature", "assets"]
           }
           //,
           // {

@@ -4,9 +4,9 @@ import Marquee from "react-fast-marquee";
 
 export default function Hero() {
   return (
-    <section className="w-full py-4 md:py-8">
+    <section className="px-0 max-w-full">
       <div className="px-4 md:px-8 mb-8">
-        <h2 className="uppercase text-[2rem] md:text-[4.5rem] lg:text-[5.5rem] text-center max-w-screen-2xl mx-auto mb-6">
+        <h2 className="uppercase text-[2rem] md:text-[4.5rem] lg:text-[5.5rem] text-center max-w-screen-2xl mx-auto mb-4 md:mb-6">
           Discover Timeless Art: Bid, Collect, and Inspire at Luxora Auctions
         </h2>
         <p className="text-center max-w-[35pc] mx-auto">

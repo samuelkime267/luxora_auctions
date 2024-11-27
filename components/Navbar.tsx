@@ -34,7 +34,7 @@ export default function Navbar() {
               <Link
                 href={link}
                 className={cn(
-                  "capitalize font-medium relative opacity-60 hover:opacity-100",
+                  "capitalize font-medium relative opacity-60 hover:opacity-100 duration-300",
                   {
                     "opacity-100": isCurrentPage,
                   }
@@ -44,7 +44,7 @@ export default function Navbar() {
               </Link>
               <div
                 className={cn(
-                  "absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-hover:w-full",
+                  "absolute bottom-0 left-0 h-[1px] bg-primary w-0 group-hover:w-full duration-300",
                   { "w-full": isCurrentPage }
                 )}
               />
@@ -61,17 +61,18 @@ export default function Navbar() {
           <Cart className="w-8 h-8" />
           <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
         </Link>
+
         <DropdownMenu>
           <DropdownMenuTrigger className="relative">
             <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
             <Bell className="w-8 h-8" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="min-w-80" align="end">
+          <DropdownMenuContent className="min-w-80 rounded-none" align="end">
             <DropdownMenuLabel className="text-lg">
               Notifications
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>No active notifications</DropdownMenuItem>
+            <p className='text-center capitalize p-2'>No active notifications</p>
           </DropdownMenuContent>
         </DropdownMenu>
 
