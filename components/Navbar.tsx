@@ -13,7 +13,7 @@ export default function Navbar() {
     <nav className="sticky top-0 left-0 w-full z-[1000] flex items-center justify-between py-4 md:py-6 px-4 md:px-8 mb-white shadow-sm bg-white">
       <Link
         href={"/"}
-        className="font-corm font-bold text-lg md:text-2xl uppercase"
+        className="font-corm font-bold leading-[1] text-lg md:text-2xl uppercase"
       >
         Luxora Auctions
       </Link>
