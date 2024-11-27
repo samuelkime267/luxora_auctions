@@ -13,8 +13,8 @@ import { artworkSchema } from "@/features/artworks/schema/artwork.schema";
 export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "1",
-    title: "Statue",
-    artist: "somebody likethat",
+    title: "David",
+    artist: "Michelangelo di Lodovico",
     artistId: "1",
     images: [statue.src, statue2.src],
     description: "cool statue",
@@ -27,7 +27,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "2",
     title: "Watch",
-    artist: "somebody likethat",
+    artist: "Caravaggio",
     artistId: "1",
     images: [watch.src, watch2.src],
     description: "cool watch",
@@ -40,7 +40,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "3",
     title: "Angel",
-    artist: "somebody likethat",
+    artist: "Sandro Botticelli",
     artistId: "1",
     images: [angel.src],
     description: "cool angel",
@@ -53,7 +53,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "4",
     title: "Car",
-    artist: "somebody likethat",
+    artist: "Rembrandt van Rijn",
     artistId: "1",
     images: [car.src],
     description: "cool car",
@@ -66,7 +66,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "5",
     title: "Field",
-    artist: "somebody likethat",
+    artist: "Jean-François Millet",
     artistId: "1",
     images: [field.src],
     description: "cool field",
@@ -79,7 +79,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "6",
     title: "Pots",
-    artist: "somebody likethat",
+    artist: "Eugène Delacroix",
     artistId: "1",
     images: [pots.src],
     description: "cool pots",
@@ -92,7 +92,7 @@ export const artworks: z.infer<typeof artworkSchema>[] = [
   {
     id: "7",
     title: "Ring",
-    artist: "somebody likethat",
+    artist: "Francisco Goya",
     artistId: "1",
     images: [ring.src],
     description: "cool ring",

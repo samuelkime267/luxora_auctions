@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import ProductGrid from "@/features/artworks/components/ProductGrid";
 import { artworks } from "@/data/artworks.data";
+import Titles from "@/components/Titles";
 
 export default function Home() {
   return (
@@ -8,8 +9,12 @@ export default function Home() {
       <Hero />
 
       <section>
-        <h4 className='mb-6'>Featured Artworks</h4>
+        <Titles title="Featured Artworks" />
         <ProductGrid data={artworks} isLoading={false} />
+      </section>
+
+      <section>
+        <Titles title="Upcoming Auctions" />
       </section>
     </main>
   );

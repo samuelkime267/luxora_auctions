@@ -16,7 +16,7 @@ export default function Hero() {
         </p>
       </div>
 
-      <Marquee autoFill>
+      <Marquee autoFill className="h-56 md:h-96">
         {images.map((img, i) => (
           <Image
             key={i}

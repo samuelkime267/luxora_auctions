@@ -41,7 +41,7 @@
       {
         "mode": "full",
         "type": "neverImport",
-        "pattern": ["/*"]
+        "pattern": ["./*"]
       }
     ]
   },
