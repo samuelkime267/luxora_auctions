@@ -1,9 +1,7 @@
 import Hero from "@/components/Hero";
 import ItemsGrid from "@/features/items/components/ItemsGrid";
-import { items } from "@/data/artworks.data";
+import { items } from "@/data/items.data";
 import Titles from "@/components/Titles";
-import ExhibitionList from "@/features/exhibition/components/ExhibitionList";
-import { exhibitions } from "@/data/exhibitions.data";
 
 export default function Home() {
   return (
@@ -11,21 +9,16 @@ export default function Home() {
       <Hero />
 
       <section>
-        <Titles title="trending lots" />
+        <Titles title="ongoing Auctions" />
       </section>
 
       <section>
-        <Titles title="Featured items" />
+        <Titles title="trending lots" />
         <ItemsGrid data={items} isLoading={false} />
       </section>
 
       <section>
-        <Titles title="Upcoming Auctions" />
-      </section>
-
-      <section>
-        <Titles title="Upcoming Exhibitions" />
-        <ExhibitionList data={exhibitions} />
+        <Titles title="Featured items" />
       </section>
     </main>
   );

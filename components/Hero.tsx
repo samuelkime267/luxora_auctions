@@ -11,8 +11,8 @@ export default function Hero() {
         </h2>
         <p className="text-center max-w-[35pc] mx-auto">
           Explore a curated collection of extraordinary items from renowned and
-          emerging artists and sellers. Unleash your passion for exclusive items
-          through exclusive auctions and secure your next masterpiece.
+          emerging experts. Unleash your passion for exclusive items through
+          exclusive auctions and secure your next masterpiece.
         </p>
       </div>
 

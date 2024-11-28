@@ -8,8 +8,13 @@ export const itemSchema = z.object({
   images: z.array(z.string()),
   description: z.string(),
   price: z.number(),
+  currentBid: z.number().optional(),
+  minEstimate: z.number(),
+  maxEstimate: z.number(),
   createdAt: z.date(),
   updatedAt: z.date(),
   stock: z.number(),
   category: z.string(),
+  startDate: z.date(),
+  endDate: z.date(),
 });

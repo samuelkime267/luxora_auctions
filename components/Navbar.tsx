@@ -13,9 +13,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Input from "./Input";
 
 export default function Navbar() {
   const path = usePathname();
+  const isUserSignedIn = true;
   return (
     <nav className="sticky top-0 left-0 w-full z-50 flex items-center justify-between py-4 md:py-6 px-4 md:px-8 mb-white shadow-sm bg-white">
       <Link
@@ -52,33 +54,52 @@ export default function Navbar() {
         })}
       </div>
 
-      <div className="flex items-center gap-4 justify-center">
-        <Link href={"/search"}>
+      <div className="flex items-center gap-3 md:gap-4 justify-center">
+        <Button className="block md:hidden">
           <Search className="w-8 h-8" />
-        </Link>
-        <Link href={"/favorite"}>
-          <Heart className="w-8 h-8" />
-        </Link>
+        </Button>
+        <Input
+          type="search"
+          placeholder="Search by keyword"
+          className="hidden md:flex"
+        >
+          <Search className="w-6 h-6" />
+        </Input>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger className="relative">
-            <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
-            <Bell className="w-8 h-8" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="min-w-80 rounded-none" align="end">
-            <DropdownMenuLabel className="text-lg">
-              Notifications
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <p className="text-center capitalize p-2">
-              No active notifications
-            </p>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {isUserSignedIn ? (
+          <>
+            <Link href={"/favorite"}>
+              <Heart className="w-8 h-8" />
+            </Link>
 
-        <Link href={"/account"}>
-          <Account className="w-8 h-8" />
-        </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="relative">
+                <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
+                <Bell className="w-8 h-8" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="min-w-80 rounded-none"
+                align="end"
+              >
+                <DropdownMenuLabel className="text-lg">
+                  Notifications
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <p className="text-center capitalize p-2">
+                  No active notifications
+                </p>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Link href={"/account"}>
+              <Account className="w-8 h-8" />
+            </Link>
+          </>
+        ) : (
+          <Button btnType="primary" className="text-nowrap">
+            Sign in
+          </Button>
+        )}
 
         <Button className="block lg:hidden">
           <Menu className="w-8 h-8" />
