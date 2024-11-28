@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/data/nav-links.data";
 import Link from "next/link";
-import { Bell, Cart, Search, Menu, Account } from "./icons";
+import { Bell, Heart, Search, Menu, Account } from "./icons";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Button from "./Button";
@@ -56,9 +56,8 @@ export default function Navbar() {
         <Link href={"/search"}>
           <Search className="w-8 h-8" />
         </Link>
-        <Link href={"/cart"} className="relative">
-          <Cart className="w-8 h-8" />
-          <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-red-600" />
+        <Link href={"/favorite"}>
+          <Heart className="w-8 h-8" />
         </Link>
 
         <DropdownMenu>
@@ -71,7 +70,9 @@ export default function Navbar() {
               Notifications
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <p className='text-center capitalize p-2'>No active notifications</p>
+            <p className="text-center capitalize p-2">
+              No active notifications
+            </p>
           </DropdownMenuContent>
         </DropdownMenu>
 
