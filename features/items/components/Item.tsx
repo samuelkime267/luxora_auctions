@@ -50,35 +50,44 @@ export default function Item({
             className="w-full h-full object-cover group-hover:scale-110 duration-300"
           />
         </div>
-        <div className="flex items-start justify-start flex-col gap-0.5 lg:gap-1">
+        <div className="flex items-start justify-start flex-col gap-1.5 lg:gap-1">
           <p className="font-corm capitalize text-xl md:text-2xl font-medium">
             {title}
           </p>
 
-          <div className="flex items-center justify-start gap-2">
-            <p className="text-xs capitalize">Estimate:</p>
-            <p>
-              ${minEstimate} - ${maxEstimate}
-            </p>
-          </div>
-          <div className="flex items-center justify-start gap-2">
-            <p className="text-xs capitalize">
-              {currentBid ? "current bid" : "starting bid"}:
-            </p>
-            <p className="font-medium text-lg">${currentBid || price}</p>
-          </div>
+          <div className="flex flex-col items-start justify-start gap-1">
+            <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
+              <p className="text-xs capitalize">Estimate:</p>
+              <p>
+                ${minEstimate} - ${maxEstimate}
+              </p>
+            </div>
+            <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
+              <p className="text-xs capitalize">
+                {currentBid ? "current bid" : "starting bid"}:
+              </p>
+              <p className="font-medium text-lg">${currentBid || price}</p>
+            </div>
 
-          <p className="capitalize">
-            {isExpired
-              ? "Auction closed"
-              : !isLive
-              ? `starts in ${years ? `${years}y` : ""} ${
-                  months ? `${months}m` : ""
-                } ${days ? `${days}d` : ""} ${hours ? `${hours}h` : ""} ${
-                  minutes ? `${minutes}m` : ""
-                } ${seconds ? `${seconds}s` : "0s"}`
-              : "live"}
-          </p>
+            <div className="capitalize">
+              {isExpired ? (
+                <p className="capitalize">Auction closed</p>
+              ) : !isLive ? (
+                <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
+                  <p className="text-xs capitalize">starts in:</p>
+                  <p className="capitalize">
+                    {`${years ? `${years}y` : ""} ${
+                      months ? `${months}m` : ""
+                    } ${days ? `${days}d` : ""} ${hours ? `${hours}h` : ""} ${
+                      minutes ? `${minutes}m` : ""
+                    } ${seconds ? `${seconds}s` : "0s"}`}
+                  </p>
+                </div>
+              ) : (
+                <p className="capitalize">live</p>
+              )}
+            </div>
+          </div>
         </div>
       </Link>
     </div>
