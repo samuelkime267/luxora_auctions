@@ -4,8 +4,8 @@ export const navLinks = [
     link: "/",
   },
   {
-    name: "artworks",
-    link: "/artworks",
+    name: "marketplace",
+    link: "/marketplace",
   },
   {
     name: "auctions",

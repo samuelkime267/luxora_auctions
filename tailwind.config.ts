@@ -60,7 +60,7 @@ const config: Config = {
       },
       fontFamily: {
         corm: ["var(--font-cormorant)"],
-        rale: ["var(--font-raleway)"],
+        grotesk: ["var(--font-grotesk)"],
       },
     },
   },

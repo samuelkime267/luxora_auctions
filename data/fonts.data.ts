@@ -1,14 +1,14 @@
-import { Raleway, Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond, Space_Grotesk } from "next/font/google";
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  variable: "--font-raleway",
-  weight: ["300", "400", "500", "600"],
-});
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-cormorant",
   weight: ["300", "400", "500", "600", "700"],
 });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-grotesk",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
-export const fonts = `${raleway.variable} ${cormorantGaramond.variable}`;
+export const fonts = `${cormorantGaramond.variable} ${spaceGrotesk.variable}`;

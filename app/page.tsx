@@ -11,7 +11,11 @@ export default function Home() {
       <Hero />
 
       <section>
-        <Titles title="Featured Artworks" />
+        <Titles title="trending lots" />
+      </section>
+
+      <section>
+        <Titles title="Featured items" />
         <ItemsGrid data={items} isLoading={false} />
       </section>
 
