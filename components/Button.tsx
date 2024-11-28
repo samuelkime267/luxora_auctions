@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-type btnType = "primary" | "secondary" | "danger";
+type btnType = "primary" | "secondary";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   btnType?: btnType;
@@ -16,10 +16,6 @@ export default function Button({
   return (
     <button className={cn(btnType, className)} {...props}>
       {children}
-
-      {(btnType === "primary" || btnType === "danger") && (
-        <div className="button-glow" />
-      )}
     </button>
   );
 }

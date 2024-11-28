@@ -1,0 +1,8 @@
+button {
+  &.primary {
+    @apply bg-black text-white py-2.5 px-4 capitalize border border-black hover:bg-white hover:text-black duration-300;
+  }
+  &.secondary {
+    @apply bg-white text-black border border-black hover:bg-black hover:text-white duration-300 py-2.5 px-4 capitalize;
+  }
+}

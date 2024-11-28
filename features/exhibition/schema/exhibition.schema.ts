@@ -16,11 +16,13 @@ const artworkSchema = z.object({
 
 export const exhibitionSchema = z.object({
   id: z.string(),
-  auctionName: z.string(),
+  exhibitionName: z.string(),
   startTime: z.date(),
   endTime: z.date(),
   createdBy: z.string(),
   createdById: z.string(),
   createdAt: z.date(),
   items: z.array(artworkSchema),
+  address: z.string(),
+  description: z.string(),
 });
