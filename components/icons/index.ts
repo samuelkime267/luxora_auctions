@@ -6,5 +6,18 @@ import Account from "./account";
 import Heart from "./heart";
 import Location from "./location";
 import Share from "./share";
+import HeartFilled from "./heart-filled";
+import Arrow from "./arrow";
 
-export { Bell, Cart, Search, Menu, Account, Location, Share, Heart };
+export {
+  Bell,
+  Cart,
+  Search,
+  Menu,
+  Account,
+  Location,
+  Share,
+  Heart,
+  HeartFilled,
+  Arrow,
+};

@@ -1,5 +1,5 @@
 import Hero from "@/components/Hero";
-import ItemsGrid from "@/features/items/components/ItemsGrid";
+import ItemsList from "@/features/items/components/ItemsList";
 import { items } from "@/data/items.data";
 import Titles from "@/components/Titles";
 
@@ -14,7 +14,7 @@ export default function Home() {
 
       <section>
         <Titles title="trending lots" />
-        <ItemsGrid data={items} isLoading={false} />
+        <ItemsList data={items} isLoading={false} isSwiper />
       </section>
 
       <section>

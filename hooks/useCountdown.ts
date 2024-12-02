@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { intervalToDuration } from "date-fns";
 
 type CountdownType = {
@@ -22,6 +22,15 @@ export const useCountdown = (targetDate: Date) => {
     years: undefined,
   });
 
+  const countdownString = useMemo(() => {
+    const { days, hours, minutes, months, seconds, years } = countdown;
+    return `${years ? `${years}y` : ""} ${months ? `${months}m` : ""} ${
+      days ? `${days}d` : ""
+    } ${hours ? `${hours}h` : ""} ${minutes ? `${minutes}m` : ""} ${
+      seconds ? `${seconds}s` : "0s"
+    }`;
+  }, [countdown]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -40,5 +49,5 @@ export const useCountdown = (targetDate: Date) => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  return countdown;
+  return { countdown, countdownString };
 };

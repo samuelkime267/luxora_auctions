@@ -5,10 +5,10 @@ import { itemSchema } from "../schema/item.schema";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
-import { Heart } from "@/components/icons";
+import { Heart, HeartFilled } from "@/components/icons";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { useCountdown } from "@/hooks/useCountdown";
+import TitleValue from "./TitleValue";
 
 type ItemProps = z.infer<typeof itemSchema>;
 
@@ -23,11 +23,11 @@ export default function Item({
   minEstimate,
   maxEstimate,
 }: ItemProps) {
-  const { days, hours, minutes, seconds, months, years } =
-    useCountdown(endDate);
   const currentTime = new Date();
-  const isExpired = currentTime > endDate;
   const isLive = currentTime > startDate && currentTime < endDate;
+
+  const { countdownString } = useCountdown(isLive ? endDate : startDate);
+  const isExpired = currentTime > endDate;
   const [isLiked, setIsLiked] = useState(false);
   const toggleLike = () => setIsLiked(!isLiked);
 
@@ -37,7 +37,11 @@ export default function Item({
         onClick={toggleLike}
         className="absolute top-2 right-2 z-[2] bg-white p-3"
       >
-        <Heart className={cn("w-6 h-6", { "text-red-600": isLiked })} />
+        {isLiked ? (
+          <HeartFilled className="w-6 h-6 text-red-600" />
+        ) : (
+          <Heart className="w-6 h-6" />
+        )}
       </Button>
 
       <Link href={`/artworks/${id}`}>
@@ -56,35 +60,23 @@ export default function Item({
           </p>
 
           <div className="flex flex-col items-start justify-start gap-1">
-            <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
-              <p className="text-xs capitalize">Estimate:</p>
-              <p>
-                ${minEstimate} - ${maxEstimate}
-              </p>
-            </div>
-            <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
-              <p className="text-xs capitalize">
-                {currentBid ? "current bid" : "starting bid"}:
-              </p>
-              <p className="font-medium text-lg">${currentBid || price}</p>
-            </div>
+            <TitleValue
+              title="estimate:"
+              value={`$${minEstimate} - $${maxEstimate}`}
+            />
+            <TitleValue
+              title={`${currentBid ? "current bid" : "starting bid"}:`}
+              value={`$${currentBid || price}`}
+            />
 
             <div className="capitalize">
               {isExpired ? (
                 <p className="capitalize">Auction closed</p>
-              ) : !isLive ? (
-                <div className="flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row">
-                  <p className="text-xs capitalize">starts in:</p>
-                  <p className="capitalize">
-                    {`${years ? `${years}y` : ""} ${
-                      months ? `${months}m` : ""
-                    } ${days ? `${days}d` : ""} ${hours ? `${hours}h` : ""} ${
-                      minutes ? `${minutes}m` : ""
-                    } ${seconds ? `${seconds}s` : "0s"}`}
-                  </p>
-                </div>
               ) : (
-                <p className="capitalize">live</p>
+                <TitleValue
+                  title={`${isLive ? "ends in:" : "starts in:"}`}
+                  value={countdownString}
+                />
               )}
             </div>
           </div>
