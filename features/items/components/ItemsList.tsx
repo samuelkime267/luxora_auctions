@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { itemSchema } from "../schema/item.schema";
 import Item from "./Item";
-import { Swiper, SwiperSlide } from "Swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
