@@ -9,6 +9,7 @@ import { Heart, HeartFilled } from "@/components/icons";
 import { useState } from "react";
 import { useCountdown } from "@/hooks/useCountdown";
 import TitleValue from "./TitleValue";
+import { formatNumberWithCommas } from "@/lib/format";
 
 type ItemProps = z.infer<typeof itemSchema>;
 
@@ -62,14 +63,17 @@ export default function Item({
           <div className="flex flex-col items-start justify-start gap-1">
             <TitleValue
               title="estimate:"
-              value={`$${minEstimate} - $${maxEstimate}`}
+              value={`$${formatNumberWithCommas(
+                minEstimate
+              )} - $${formatNumberWithCommas(maxEstimate)}`}
+              className="opacity-60"
             />
             <TitleValue
               title={`${currentBid ? "current bid" : "starting bid"}:`}
-              value={`$${currentBid || price}`}
+              value={`$${formatNumberWithCommas(currentBid || price)}`}
             />
 
-            <div className="capitalize">
+            <div className="capitalize opacity-60">
               {isExpired ? (
                 <p className="capitalize">Auction closed</p>
               ) : (

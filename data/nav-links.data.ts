@@ -8,6 +8,10 @@ export const navLinks = [
     link: "/auctions",
   },
   {
+    name: "shop",
+    link: "/shop",
+  },
+  {
     name: "sell",
     link: "/sell",
   },
