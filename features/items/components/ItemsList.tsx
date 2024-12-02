@@ -64,13 +64,13 @@ function ItemsSwiper({ data }: Props) {
         ))}
       </Swiper>
       <button
-        className="absolute -left-6 top-1/2 -translate-y-1/2 bg-white p-3 z-10 shadow-xl"
+        className="absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 bg-white p-3 z-10 shadow-xl"
         onClick={() => swiperRef.current?.slidePrev()}
       >
         <Arrow className="w-6 h-6 -rotate-90" />
       </button>
       <button
-        className="absolute -right-6 top-1/2 -translate-y-1/2 bg-white p-3 z-10 shadow-xl"
+        className="absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 bg-white p-3 z-10 shadow-xl"
         onClick={() => swiperRef.current?.slideNext()}
       >
         <Arrow className="w-6 h-6 rotate-90" />
