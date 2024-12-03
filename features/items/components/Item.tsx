@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import { itemSchema } from "../schema/item.schema";
+import { itemSchema, auctionDetailsSchema } from "../schema/item.schema";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -12,23 +12,18 @@ import TitleValue from "./TitleValue";
 import { formatNumberWithCommas } from "@/lib/format";
 
 type ItemProps = z.infer<typeof itemSchema>;
+interface AuctionDetailsProps extends z.infer<typeof auctionDetailsSchema> {
+  price: number;
+}
 
 export default function Item({
   id,
   images,
   title,
   price,
-  startDate,
-  endDate,
-  currentBid,
-  minEstimate,
-  maxEstimate,
+  itemType,
+  auctionDetails,
 }: ItemProps) {
-  const currentTime = new Date();
-  const isLive = currentTime > startDate && currentTime < endDate;
-
-  const { countdownString } = useCountdown(isLive ? endDate : startDate);
-  const isExpired = currentTime > endDate;
   const [isLiked, setIsLiked] = useState(false);
   const toggleLike = () => setIsLiked(!isLiked);
 
@@ -60,32 +55,57 @@ export default function Item({
             {title}
           </p>
 
-          <div className="flex flex-col items-start justify-start gap-1">
-            <TitleValue
-              title="estimate:"
-              value={`$${formatNumberWithCommas(
-                minEstimate
-              )} - $${formatNumberWithCommas(maxEstimate)}`}
-              className="opacity-60"
-            />
-            <TitleValue
-              title={`${currentBid ? "current bid" : "starting bid"}:`}
-              value={`$${formatNumberWithCommas(currentBid || price)}`}
-            />
-
-            <div className="capitalize opacity-60">
-              {isExpired ? (
-                <p className="capitalize">Auction closed</p>
-              ) : (
-                <TitleValue
-                  title={`${isLive ? "ends in:" : "starts in:"}`}
-                  value={countdownString}
-                />
-              )}
+          {itemType === "auctioned" && auctionDetails ? (
+            <ItemAuctionDetails price={price} {...auctionDetails} />
+          ) : (
+            <div className="flex flex-col items-start justify-start gap-1">
+              <p>${formatNumberWithCommas(price)}</p>
             </div>
-          </div>
+          )}
         </div>
       </Link>
+    </div>
+  );
+}
+
+function ItemAuctionDetails({
+  endDate,
+  maxEstimate,
+  minEstimate,
+  startDate,
+  currentBid,
+  price,
+}: AuctionDetailsProps) {
+  const currentTime = new Date();
+  const isLive = currentTime > startDate && currentTime < endDate;
+
+  const { countdownString } = useCountdown(isLive ? endDate : startDate);
+  const isExpired = currentTime > endDate;
+
+  return (
+    <div className="flex flex-col items-start justify-start gap-1">
+      <TitleValue
+        title="estimate:"
+        value={`$${formatNumberWithCommas(
+          minEstimate
+        )} - $${formatNumberWithCommas(maxEstimate)}`}
+        className="opacity-60"
+      />
+      <TitleValue
+        title={`${currentBid ? "current bid" : "starting bid"}:`}
+        value={`$${formatNumberWithCommas(currentBid || price)}`}
+      />
+
+      <div className="capitalize opacity-60">
+        {isExpired ? (
+          <p className="capitalize">Auction closed</p>
+        ) : (
+          <TitleValue
+            title={`${isLive ? "ends in:" : "starts in:"}`}
+            value={countdownString}
+          />
+        )}
+      </div>
     </div>
   );
 }

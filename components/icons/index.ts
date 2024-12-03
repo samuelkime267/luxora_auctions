@@ -8,6 +8,7 @@ import Location from "./location";
 import Share from "./share";
 import HeartFilled from "./heart-filled";
 import Arrow from "./arrow";
+import Plus from "./plus";
 
 export {
   Bell,
@@ -20,4 +21,5 @@ export {
   Heart,
   HeartFilled,
   Arrow,
+  Plus,
 };

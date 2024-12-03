@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { fonts } from "@/data/fonts.data";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Luxora Auctions",
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={`${fonts} antialiased relative`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
