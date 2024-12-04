@@ -9,19 +9,30 @@ import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { Arrow } from "@/components/icons";
+import { cn } from "@/lib/utils";
 
 type AuctionListProps = {
   auctions: z.infer<typeof auctionSchema>[];
   isSwiper?: boolean;
+  className?: string;
 };
 
-export default function AuctionList({ auctions, isSwiper }: AuctionListProps) {
+export default function AuctionList({
+  auctions,
+  isSwiper,
+  className,
+}: AuctionListProps) {
   return (
     <>
       {isSwiper ? (
         <AuctionsSwiper auctions={auctions} />
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          className={cn(
+            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+            className
+          )}
+        >
           {auctions.map((auction) => (
             <AuctionCard key={auction.id} {...auction} />
           ))}
@@ -39,19 +50,19 @@ function AuctionsSwiper({ auctions }: AuctionListProps) {
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
-        slidesPerView={3}
+        slidesPerView={4}
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
         breakpoints={{
           0: {
-            slidesPerView: 1.2,
+            slidesPerView: 1.5,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: 3,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 4,
           },
         }}
       >

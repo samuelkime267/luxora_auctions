@@ -30,13 +30,13 @@ export default function AuctionCard({
           {title}
         </p>
 
-        <p className="text-black/90">{formatDate(startDate, "p")}</p>
-        <p className="text-black/90">
+        <p className="text-black/75 text-sm">{formatDate(startDate, "p")}</p>
+        <p className="text-black/75 text-sm">
           {formatDate(startDate, "dd MMMM, yyyy")} -{" "}
           {formatDate(endDate, "dd MMMM, yyyy")}
         </p>
 
-        <p className="text-black/60">{location}</p>
+        <p className="text-black/60 text-sm">{location}</p>
       </div>
     </Link>
   );

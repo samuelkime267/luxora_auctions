@@ -14,7 +14,7 @@ export default function TitleValue({
   return (
     <div
       className={cn(
-        "flex items-start md:items-center justify-start md:gap-2 flex-col md:flex-row",
+        "flex items-start lg:items-center justify-start lg:gap-2 flex-col lg:flex-row",
         className
       )}
     >
