@@ -9,6 +9,9 @@ import Share from "./share";
 import HeartFilled from "./heart-filled";
 import Arrow from "./arrow";
 import Plus from "./plus";
+import CheckCircle from "./check-circle";
+import Info from "./info";
+import Loader from "./loader";
 
 export {
   Bell,
@@ -22,4 +25,7 @@ export {
   HeartFilled,
   Arrow,
   Plus,
+  CheckCircle,
+  Info,
+  Loader,
 };

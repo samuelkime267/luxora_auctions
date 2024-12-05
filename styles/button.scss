@@ -5,4 +5,7 @@ button {
   &.secondary {
     @apply bg-white text-black border border-black hover:bg-black hover:text-white duration-300 py-2.5 px-4 capitalize;
   }
+  &:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
 }

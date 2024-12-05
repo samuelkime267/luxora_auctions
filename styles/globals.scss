@@ -95,3 +95,11 @@ small {
 section {
   @apply max-w-screen-2xl p-4 md:p-8 mx-auto w-full;
 }
+
+.required {
+  &:after {
+    content: "*";
+    color: red;
+    font-size: 0.75rem;
+  }
+}

@@ -13,7 +13,8 @@
           "hooks/**/*",
           "lib/**/*",
           "styles/**/*",
-          "server/**/*"
+          "server/**/*",
+          "actions/**/*"
         ]
       },
       {
