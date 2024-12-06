@@ -4,6 +4,7 @@ import { registerSchema } from "../schema/auth.schema";
 import { z } from "zod";
 import db from "@/lib/db";
 import bcrypt from "bcryptjs";
+import { redirect } from "next/navigation";
 
 export const registerAction = async (data: z.infer<typeof registerSchema>) => {
   try {
@@ -27,9 +28,7 @@ export const registerAction = async (data: z.infer<typeof registerSchema>) => {
       },
     });
 
-    // session creation here
-
-    return { success: "Registration successful" };
+    redirect("/login");
   } catch (error) {
     console.log(error);
     return { error: "Something went wrong" };

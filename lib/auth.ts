@@ -1,47 +1,58 @@
-import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
-import Credentials from "next-auth/providers/credentials";
-import db from "./db";
-import bcrypt from "bcryptjs";
+import NextAuth, { type DefaultSession } from "next-auth";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type JWT } from "next-auth/jwt";
+import { type UserRole } from "@prisma/client";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-    }),
-    Credentials({
-      name: "credentials",
-      credentials: {
-        name: { label: "name", type: "text" },
-        email: { label: "email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        if (!credentials.email || !credentials.password || !credentials.name)
-          return null;
+import authConfig from "./auth.config";
 
-        const email = credentials.email as string;
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import db, { getUserById } from "./db";
 
-        let user = await db.user.findUnique({ where: { email } });
+declare module "next-auth" {
+  interface Session {
+    user: {
+      role: UserRole;
+    } & DefaultSession["user"];
+  }
+}
 
-        if (user) return null;
+declare module "next-auth/jwt" {
+  interface JWT {
+    role: UserRole;
+  }
+}
 
-        const hashedPassword = await bcrypt.hash(
-          credentials.password as string,
-          10
-        );
-        user = await db.user.create({
-          data: {
-            name: credentials.name as string,
-            email: credentials.email as string,
-            password: hashedPassword,
-          },
-        });
-        // write remaining login login here
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  pages: {
+    error: "/error",
+    signIn: "/login",
+  },
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user && token.sub) session.user.id = token.sub;
+      if (session.user && token.role) session.user.role = token.role;
 
-        return user; //obob update this code
-      },
-    }),
-  ],
+      return session;
+    },
+    async jwt({ token }) {
+      if (token.sub) {
+        const user = await getUserById(token.sub);
+        if (user) token.role = user.role;
+      }
+      return token;
+    },
+  },
+  events: {
+    async linkAccount({ user }) {
+      console.log({ user });
+
+      await db.user.update({
+        where: { id: user.id },
+        data: { emailVerified: new Date() },
+      });
+    },
+  },
+  adapter: PrismaAdapter(db),
+  session: { strategy: "jwt" },
+  ...authConfig,
 });

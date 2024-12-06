@@ -60,12 +60,13 @@
           },
           {
             "from": ["shared"],
-            "allow": ["data", "assets"]
+            "allow": ["data", "assets", "feature"]
           },
           {
             "from": ["feature"],
             "allow": [
               "shared",
+              "data",
               ["feature", { "featureName": "${from.featureName}" }]
             ]
           },

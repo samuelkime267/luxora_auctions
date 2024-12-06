@@ -11,13 +11,21 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Form from "@/components/Form";
 import Link from "next/link";
+import { Google } from "@/components/icons";
+import { signIn } from "next-auth/react";
+import { defaultRedirectUrl } from "@/data/routes.data";
+import { useSearchParams } from "next/navigation";
 
 type loginFormType = z.infer<typeof loginSchema>;
 
 export default function LoginForm() {
   const [isPending, startTransition] = useTransition();
   const [formError, setFormError] = useState<string | null>(null);
-  const [formSuccess, setFormSuccess] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider"
+      : null;
 
   const {
     formState: { errors },
@@ -29,16 +37,18 @@ export default function LoginForm() {
 
   const submit = (data: loginFormType) => {
     setFormError(null);
-    setFormSuccess(null);
 
     startTransition(async () => {
       const response = await loginAction(data);
       if (response?.error) {
         setFormError(response.error);
       }
-      if (response?.success) {
-        setFormSuccess(response.success);
-      }
+    });
+  };
+
+  const signInWithGoogle = () => {
+    signIn("google", {
+      redirectTo: defaultRedirectUrl.user,
     });
   };
 
@@ -46,10 +56,25 @@ export default function LoginForm() {
     <Form
       title="Login to your account"
       description="Please enter your details to login"
-      success={formSuccess}
-      error={formError}
+      error={formError || urlError}
       onSubmit={handleSubmit(submit)}
     >
+      <Button
+        type="button"
+        disabled={isPending}
+        btnType="secondary"
+        className="flex justify-center items-center"
+        onClick={signInWithGoogle}
+      >
+        <Google className="w-6 h-6" />
+      </Button>
+
+      <div className="w-full flex items-center justify-center gap-1">
+        <div className="w-full h-[1px] bg-neutral-300" />
+        <p>or</p>
+        <div className="w-full h-[1px] bg-neutral-300" />
+      </div>
+
       <Input
         register={register}
         error={errors.email?.message}
@@ -68,7 +93,7 @@ export default function LoginForm() {
         />
         <Link
           href="/forgot-password"
-          className="text-sm capitalize mt-2 text-right w-full"
+          className="text-sm capitalize mt-2 text-right w-full hover:underline"
         >
           forgot password?
         </Link>

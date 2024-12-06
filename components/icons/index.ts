@@ -12,6 +12,7 @@ import Plus from "./plus";
 import CheckCircle from "./check-circle";
 import Info from "./info";
 import Loader from "./loader";
+import Google from "./google";
 
 export {
   Bell,
@@ -28,4 +29,5 @@ export {
   CheckCircle,
   Info,
   Loader,
+  Google,
 };
