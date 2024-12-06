@@ -48,9 +48,6 @@ export default function RegistrationForm() {
         if (response?.error) {
           setFormError(response.error);
         }
-        if (response?.success) {
-          setFormSuccess(response.success);
-        }
       });
     }
   };
