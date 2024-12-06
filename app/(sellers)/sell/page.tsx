@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import TestSignout from "./testSignout";
+import TestSignout from "@/components/testSignout";
 
 export default async function Sell() {
   const user = await auth();
